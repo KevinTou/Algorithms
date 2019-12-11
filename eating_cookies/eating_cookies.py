@@ -7,13 +7,29 @@ import sys
 # recursive solution
 
 
-def eating_cookies(n, cache=None):
-    if n == 0 or n == 1:
-        return 1
-    elif n == 2:
-        return 2
-    else:
-        return eating_cookies(n-1) + eating_cookies(n-2) + eating_cookies(n-3)
+def eating_cookies(n, cache={0: 1, 1: 1, 2: 2}):
+    # Naive way
+
+    # if n < 0:
+    #     return 0
+
+    # if n == 0 or n == 1:
+    #     return 1
+    # elif n == 2:
+    #     return 2
+    # else:
+    #     return eating_cookies(n-1) + eating_cookies(n-2) + eating_cookies(n-3)
+
+    if n < 0:
+        return 0
+
+    if n not in cache:
+        cache[n] = eating_cookies(
+            n-1) + eating_cookies(n-2) + eating_cookies(n-3)
+
+        return cache[n]
+
+    return eating_cookies(n)
 
 
 if __name__ == "__main__":
