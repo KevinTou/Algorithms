@@ -12,8 +12,6 @@ def making_change(amount, denominations):
 
     cache[0] = 1  # Base case
 
-    count = 0
-
     for coin in denominations:
         for higher_amount in range(coin, amount + 1):
             cache[higher_amount] += cache[higher_amount - coin]
